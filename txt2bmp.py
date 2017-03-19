@@ -51,7 +51,6 @@ def matrix2bmp(matrix, filename):
 
     for y in range(height):
         for x in range(width):
-            # r, g, b = matrix[y][x]
             pixels[x, y] = matrix[y][x]
 
     try:
@@ -80,10 +79,11 @@ def main():
     group.add_argument("-f", "--file", type=str, help="Input text from file")
     argument_parser.add_argument("-b", "--bitmap", type=str, help="Save image as bitmap")
     argument_parser.add_argument("-t", "--text", type=str, help="Save rgb values to file")
-    argument_parser.add_argument("-p", "--pixels", help="Print RGB values")
+    argument_parser.add_argument("-p", "--pixels", action="store_true", help="Print RGB values")
     args = argument_parser.parse_args()
 
     text = get_text(args)
+
     if text is not False:
         matrix = txt2rgb(text)
         if args.bitmap is not None:
